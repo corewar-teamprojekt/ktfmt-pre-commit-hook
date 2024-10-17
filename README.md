@@ -1,11 +1,4 @@
 # ktfmt-pre-commit-hook
-
-[![Main Build status](https://img.shields.io/github/workflow/status/davehadley/ktfmt-pre-commit-hook/ci/main?label=main)](https://github.com/davehadley/ktfmt-pre-commit-hook)
-[![Develop status](https://img.shields.io/github/workflow/status/davehadley/ktfmt-pre-commit-hook/ci/develop?label=develop)](https://github.com/davehadley/ktfmt-pre-commit-hook)
-[![License](https://img.shields.io/badge/license-MIT%20OR%20Apache--2.0-blue)](https://github.com/davehadley/ktfmt-pre-commit-hook)
-[![Last commit](https://img.shields.io/github/last-commit/davehadley/ktfmt-pre-commit-hook/develop)](https://github.com/davehadley/ktfmt-pre-commit-hook)
-[![Last release](https://img.shields.io/github/release-date/davehadley/ktfmt-pre-commit-hook)](https://github.com/davehadley/ktfmt-pre-commit-hook)
-
 A [pre-commit](https://pre-commit.com/) hook to run [ktfmt](https://github.com/facebookincubator/ktfmt).
 
 ## Requirements
@@ -19,24 +12,25 @@ This commit hook requires Python `>=3.8`.
 Add the following lines to your `.pre-commit-config.yaml`.
 
 ```yaml
-- repo: https://github.com/davehadley/ktfmt-pre-commit-hook
-  rev: 0.7.0
+- repo: https://github.com/corewar-teamprojekt/ktfmt-pre-commit-hook
+  rev: 0.8.0
   hooks:
   - id: ktfmt
     stages: [commit]
 ```
 
-To specify a specific version of `ktfmt` pass `--version=XX.YY.ZZ` with the `args` option. 
-All other `args` provided will be passed onto `ktfmt`. For example:
-
+We use it with the following options:
 ```yaml
-- repo: https://github.com/davehadley/ktfmt-pre-commit-hook
-  rev: 0.7.0
+- repo: https://github.com/corewar-teamprojekt/ktfmt-pre-commit-hook
+  rev: 0.8.0
   hooks:
   - id: ktfmt
-    args: [--version=0.39, --dropbox-style]
+    args: [--dry-run, --kotlinlang-style]
     stages: [commit]
 ```
+
+With `--dry-run` the hook doesn't automatically format the files on commit.  
+With `--kotlinlang-style` the hook uses 4-space indentation instead of 2-space indentation.  
 
 See the [ktfmt documentation](https://facebookincubator.github.io/ktfmt/) for supported command line arguments.
 
