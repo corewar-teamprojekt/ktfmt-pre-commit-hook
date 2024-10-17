@@ -21,7 +21,11 @@ def ktfmtprecommithook(
     cmd = (
         ["java", "-jar", str(ktfmt)] + list(extra_args) + [str(f) for f in input_files]
     )
-    run(cmd, check=True)
+    result = run(cmd, check=True, capture_output=True, text=True)
+    if result.stdout.strip():
+        print(f"ktfmt formatting issues detected in the following files:")
+        print(result.stdout)
+        raise SystemExit(1)
     return
 
 
